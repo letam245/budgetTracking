@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Discover Vietnam</title>
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- link to local style sheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Font Awesome Glyphicons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <!-- link to the AngularJS Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Housing Budget</h1>
+        </div>
+    </div>
+    <div class="container" ng-app="app" ng-controller='main'>
+        <h4>Total Budget:
+            <input type="text" ng-model='total' />
+        </h4>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Budget</th>
+                    <th>Percentage of Budget</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="room in rooms">
+                    <th scope="row">{{room.room.toUpperCase()}}</th>
+                    <td class="price">
+                        <input class="form-control" type="text" ng-model="room.budget" />
+                    </td>
+                    <td>{{ (room.budget / total * 100) | number:2 }}%</td>
+                    <td>
+                        <button ng-click="delete($index)" class="btn btn-warning">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Remaining Budget</th>
+                    <td class="total">{{calculate() | currency : symbol : fractionSize}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Add Room</h3>
+        <div class="row">
+            <div class="col-xs-4">
+                <input type="text" class="form-control" ng-model="addRoom" placeholder="Room title" />
+            </div>
+            <div class="col-xs-4">
+                <input type="text" class="form-control" ng-model="addBudget" placeholder="Room budget" />
+            </div>
+            <button ng-click="add($index)" class="btn btn-success col-xs-3">Add Room</button>
+            
+            
+        </div>
+        <br />
+        <p class="text-danger">{{errortext}}</p>
+        <hr />
+        <h3>Email Yourself</h3>
+        <div class="row">
+            <div class="col-xs-4">
+                <input type="text" class="form-control" ng-model="emailAddress" placeholder="Your Email" />
+            </div>
+            <button ng-click="email()" class="btn btn-primary col-xs-3">Send</button>
+            
+        </div>
+    </div>
+
+
+    <br />
+
+
+    <script type="text/javascript" src="assets/js/app.js"></script>
+</body>
+
+</html>
