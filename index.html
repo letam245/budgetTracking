@@ -32,11 +32,33 @@
 </head>
 
 <body>
-    <div class="jumbotron">
+    <!-- <div class="jumbotron">
         <div class="container">
             <h1 class ="text-center">Budget Tracking</h1>
         </div>
+    </div> -->
+
+    <!-- =================== carousel =================== -->
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div id="container">
+            <div class="imageLeft">
+                <img src="assets/img/kitchenBefore.jpg" class="before">
+            </div>
+            <div class="imageRight">
+                <img class="img-responsive" src="assets/img/kitchenAfter.jpg">
+            </div>
+            <div class="controls">
+                <input type="range" class="slider" min="0" max="100" value="50" soninput="moveDivisor()" />
+            </div>
+        </div>
+
     </div>
+
+
+
+
     <div class="container" ng-app="app" ng-controller='main'>
         <h4>Total Budget:
             <input type="text" ng-model='total' />
@@ -79,8 +101,8 @@
                 <input type="text" class="form-control" ng-model="addBudget" placeholder="Room budget" />
             </div>
             <button ng-click="add($index)" class="btn btn-success col-xs-3">Add Room</button>
-            
-            
+
+
         </div>
         <br />
         <p class="text-danger">{{errortext}}</p>
@@ -91,7 +113,7 @@
                 <input type="text" class="form-control" ng-model="emailAddress" placeholder="Your Email" />
             </div>
             <button ng-click="email()" class="btn btn-primary col-xs-3">Send</button>
-            
+
         </div>
     </div>
 
@@ -100,6 +122,20 @@
 
 
     <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript">
+        var slider = document.querySelector('.slider');
+        var imageLeft = document.querySelector('.imageLeft');
+        function moveDivisor() {
+
+            slider.addEventListener('input', function () {
+                imageLeft.style.width = (this.value + "%");
+            });
+        };
+
+        window.onload = function () {
+            moveDivisor();
+        };
+    </script>
 </body>
 
 </html>
